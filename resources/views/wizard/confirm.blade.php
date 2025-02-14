@@ -8,6 +8,7 @@
         </div>
         <div class="card-body">
             <h5>Dados Pessoais</h5>
+            <p><strong>ID:</strong> {{ session('dados_pessoais.id') }}</p> <!-- Adicione esta linha -->
             <p><strong>CPF:</strong> {{ session('dados_pessoais.cpf') }}</p>
             <p><strong>Nome:</strong> {{ session('dados_pessoais.name') }}</p>
             <p><strong>Email:</strong> {{ session('dados_pessoais.email') }}</p>

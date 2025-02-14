@@ -38,11 +38,21 @@ class WizardController extends Controller
     }
 
     public function submit()
-    {
-        $user = session('dados_pessoais');
-        // Atualizar o status do usuário para 'completed'
-        User::where('id', $user->id)->update(['status' => 'completed']);
+{
+    $user = session('dados_pessoais');
 
-        return redirect()->route('login')->with('success', 'Cadastro realizado com sucesso! Você pode fazer login agora.');
+    // Verifica se os dados do usuário estão presentes
+    if (!$user || !isset($user['id'])) {
+        return redirect()->route('register')->withErrors(['message' => 'Dados do usuário não encontrados.']);
     }
+
+    // Atualizar o status do usuário para 'completed'
+    User::where('id', $user['id'])->update(['status' => 'completed']);
+
+    // Limpar dados da sessão se necessário
+    session()->forget('dados_pessoais');
+    session()->forget('endereco');
+
+    return redirect()->route('login')->with('success', 'Cadastro realizado com sucesso! Você pode fazer login agora.');
+}
 }

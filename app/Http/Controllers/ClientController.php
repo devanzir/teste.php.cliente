@@ -40,6 +40,7 @@ class ClientController extends Controller
             'email' => $request->email,
             'cpf' => $request->cpf,
             'contract_attachment' => $filePath,
+            
         ]);
         #dd('Cliente salvo com sucesso!');
 
@@ -65,11 +66,8 @@ class ClientController extends Controller
         // Atualiza os dados do cliente
         $client->update($request->except('contract_attachment'));
     
-        // Se um novo arquivo for enviado, armazene o novo arquivo
+       
         if ($request->hasFile('contract_attachment')) {
-            // Exclua o arquivo antigo se necessário
-            // Storage::delete($client->contract_attachment); // Descomente se quiser excluir o antigo
-    
             $filePath = $request->file('contract_attachment')->store('contracts');
             $client->update(['contract_attachment' => $filePath]);
         }

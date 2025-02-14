@@ -55,8 +55,9 @@ Route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name(
 
 
 
-// Protegendo a rota com o middleware 'auth'
+// Protegendo rotas com o middleware 'auth'
 Route::middleware(['auth'])->group(function () {
+    Route::resource('clients', ClientController::class);
     Route::get('/clientes', [ClientController::class, 'index'])->name('clientes.index');
     // Adicione outras rotas que devem ser protegidas aqui
 });
