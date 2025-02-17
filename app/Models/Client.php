@@ -14,5 +14,5 @@ class Client extends Model
         'email',
         'cpf',
         'contract_attachment',
-    ]; // Campos que podem ser preenchidos
+    ];
 }

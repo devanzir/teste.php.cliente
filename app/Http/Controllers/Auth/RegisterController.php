@@ -74,7 +74,7 @@ class RegisterController extends Controller
             return redirect()->route('register')->withErrors(['error' => 'Dados não encontrados na sessão.']);
         }
 
-        return view('wizard.step2'); // Retorna a view para a página de confirmação
+        return view('wizard.step2');
     }
 
     public function submit()
@@ -86,7 +86,7 @@ class RegisterController extends Controller
 
         $dados = session('dados_pessoais');
 
-        // Aqui você pode atualizar o status do usuário ou realizar outra ação necessária
+        // Aqui atualizar o status do usuário ou realizar outra ação necessária
         $user = User::where('cpf', $dados['cpf'])->first(); // Procura usuário pelo CPF
 
         if ($user) {

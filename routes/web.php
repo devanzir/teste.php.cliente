@@ -7,7 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ClientProgressController;
-use App\Models\User; // Ajuste o caminho conforme necessário
+use App\Models\User; 
 // Rota inicial
 
 
@@ -44,7 +44,7 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-#Route::middleware(['auth'])->group(function () {
+
 Route::resource('clients', ClientController::class);
 
 
@@ -59,5 +59,4 @@ Route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name(
 Route::middleware(['auth'])->group(function () {
     Route::resource('clients', ClientController::class);
     Route::get('/clientes', [ClientController::class, 'index'])->name('clientes.index');
-    // Adicione outras rotas que devem ser protegidas aqui
 });

@@ -22,7 +22,7 @@ class WizardController extends Controller
             return redirect()->route('wizard.confirm');
         }
 
-        return view('wizard.step2'); // Certifique-se de ter essa view
+        return view('wizard.step2'); // 
     }
 
     public function confirm()
