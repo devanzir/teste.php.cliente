@@ -3,11 +3,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use Illuminate\Http\Request;
+use App\Services\ClientService;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
 
 
 class ClientController extends Controller
 {
+
+    protected $clientService;
+
+    public function __construct(ClientService $clientService)
+    {
+        $this->clientService = $clientService;
+    }
+    
     public function index()
     {
         $clients = Client::paginate(10);

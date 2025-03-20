@@ -1,18 +1,26 @@
 <?php
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use App\Services\UserService;
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 
 class RegisterController extends Controller
 {
+    protected $userService;
+
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+    
     public function showRegistrationForm()
     {
-        return view('auth.register'); // Crie a view para o formulário de registro
+        return view('auth.register'); 
     }
 
     public function register(Request $request)
