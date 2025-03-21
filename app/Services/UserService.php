@@ -1,7 +1,5 @@
 <?php
 
-// app/Services/UserService.php
-
 namespace App\Services;
 
 use Exception;
@@ -28,28 +26,4 @@ class UserService
             throw new Exception('Não foi possível criar o usuário');
         }
     }
-
-    public function completeRegistration(string $cpf)
-    {
-        try {
-            $user = $this->userRepository->findByCpf($cpf);
-            
-            if (!$user) {
-                throw new Exception('Usuário não encontrado');
-            }
-
-            $updated = $this->userRepository->updateStatus($user->id, 'completed');
-            
-            if (!$updated) {
-                throw new Exception('Não foi possível atualizar o status do usuário');
-            }
-
-            return $updated;
-        } catch (Exception $e) {
-            Log::error('Erro ao completar registro', ['error' => $e->getMessage()]);
-            throw $e;
-        }
-    }
-
-    // Adicione outros métodos conforme necessário
 }
